@@ -87,10 +87,10 @@ CREATE INDEX IF NOT EXISTS idx_closed_slots_date ON closed_slots (date);
 
 INSERT OR IGNORE INTO users (username, password_hash, role, display_name, company_name, phone, email)
 VALUES
-  ('admin', '$2b$10$F0bq3eHnY/Tt2sz8qP4f.uNV4HJQkQIhwWdCl3LdU16u7D6SvLUwK', 'admin', '管理员', NULL, NULL, NULL),
-  ('client1', '$2b$10$F0bq3eHnY/Tt2sz8qP4f.uNV4HJQkQIhwWdCl3LdU16u7D6SvLUwK', 'client', '客户一', NULL, NULL, NULL),
-  ('client2', '$2b$10$F0bq3eHnY/Tt2sz8qP4f.uNV4HJQkQIhwWdCl3LdU16u7D6SvLUwK', 'client', '客户二', NULL, NULL, NULL),
-  ('operator', '$2b$10$F0bq3eHnY/Tt2sz8qP4f.uNV4HJQkQIhwWdCl3LdU16u7D6SvLUwK', 'operator', '运营人员', NULL, NULL, NULL);
+  ('admin', '$2a$10$WRsSandUWvLUZh1D0BYE1.sOK4YF7y6O5Zj77FzjPu6spI5PjRoq2', 'admin', '管理员', NULL, NULL, NULL),
+  ('client1', '$2a$10$WRsSandUWvLUZh1D0BYE1.sOK4YF7y6O5Zj77FzjPu6spI5PjRoq2', 'client', '客户一', NULL, NULL, NULL),
+  ('client2', '$2a$10$WRsSandUWvLUZh1D0BYE1.sOK4YF7y6O5Zj77FzjPu6spI5PjRoq2', 'client', '客户二', NULL, NULL, NULL),
+  ('operator', '$2a$10$WRsSandUWvLUZh1D0BYE1.sOK4YF7y6O5Zj77FzjPu6spI5PjRoq2', 'operator', '运营人员', NULL, NULL, NULL);
 `;
 
 let db: any | null = null;
