@@ -4,6 +4,13 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
+function getUploadBaseDir() {
+  if (process.env.VERCEL) {
+    return "/tmp";
+  }
+  return process.cwd();
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -34,7 +41,8 @@ export async function GET(
     return new NextResponse("Invalid file path", { status: 400 });
   }
 
-  const filePath = path.join(process.cwd(), row.packing_list_path);
+  const baseDir = getUploadBaseDir();
+  const filePath = path.join(baseDir, row.packing_list_path);
   if (!fs.existsSync(filePath)) {
     return new NextResponse("File not found", { status: 404 });
   }

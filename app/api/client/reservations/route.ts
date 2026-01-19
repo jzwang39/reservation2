@@ -133,8 +133,15 @@ function buildDayOverview(
   return result;
 }
 
+function getUploadBaseDir() {
+  if (process.env.VERCEL) {
+    return "/tmp";
+  }
+  return process.cwd();
+}
+
 function ensureUploadDir() {
-  const dir = path.join(process.cwd(), "uploads", "packing-lists");
+  const dir = path.join(getUploadBaseDir(), "uploads", "packing-lists");
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }
@@ -269,6 +276,7 @@ export async function POST(request: NextRequest) {
   const fullPath = path.join(uploadDir, safeName);
   const buffer = Buffer.from(await file.arrayBuffer());
   fs.writeFileSync(fullPath, buffer);
+  const dbPath = path.join("uploads", "packing-lists", safeName);
   const reservationNo = buildReservationNo(db, date);
   const insertStmt = db.prepare(
     "INSERT INTO reservations (reservation_no, user_id, date, start_time, end_time, status, container_no, packing_list_path) VALUES (?, ?, ?, ?, ?, 'booked', ?, ?)"
@@ -280,7 +288,7 @@ export async function POST(request: NextRequest) {
     startTime,
     endTime,
     containerNo,
-    path.relative(process.cwd(), fullPath)
+    dbPath
   );
   const id = result.lastInsertRowid as number;
   const rowStmt = db.prepare("SELECT * FROM reservations WHERE id = ?");
