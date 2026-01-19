@@ -1,10 +1,13 @@
 import { auth } from "@/lib/auth";
 import { getDb, ReservationRow } from "@/db";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
-export async function GET(context: { params: { id: string } }) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
   const session = await auth();
   if (
     !session ||
@@ -13,7 +16,7 @@ export async function GET(context: { params: { id: string } }) {
     return new NextResponse("Unauthorized", { status: 401 });
   }
 
-  const id = Number(context.params.id);
+  const id = Number(params.id);
   if (!Number.isFinite(id)) {
     return new NextResponse("Invalid id", { status: 400 });
   }
