@@ -12,7 +12,7 @@ export default function SignInForm() {
   const [loading, setLoading] = useState(false);
 
   const title =
-    lang === "zh" ? "仓库预约系统登录" : "Sign in to Warehouse System";
+    lang === "zh" ? "大道会员仓送仓预约系统登录" : "Sign in to Right Way Warehouse System";
   const usernameLabel = lang === "zh" ? "用户名" : "Username";
   const passwordLabel = lang === "zh" ? "密码" : "Password";
   const buttonLabel = loading

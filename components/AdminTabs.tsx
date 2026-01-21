@@ -100,7 +100,7 @@ function statusColor(status: SlotStatus) {
 export default function AdminTabs() {
   const { lang } = useLanguage();
   const [tab, setTab] = useState<"overview" | "closed">("overview");
-  const title = lang === "zh" ? "仓库管理员界面" : "Warehouse Admin Panel";
+  const title = lang === "zh" ? "仓库管理员工作台" : "Warehouse Admin Panel";
   const overviewTabLabel =
     lang === "zh" ? "预约总览" : "Reservation Overview";
   const closedTabLabel =
@@ -187,7 +187,7 @@ function OverviewTab() {
                   {day.slots.map(slot => (
                     <div
                       key={slot.startTime}
-                      className={`text-xs rounded px-2 py-1 inline-flex items-center justify-between ${statusColor(
+                      className={`text-xs rounded px-2 py-1 inline-flex items-center justify-between flex-wrap ${statusColor(
                         slot.status
                       )}`}
                     >

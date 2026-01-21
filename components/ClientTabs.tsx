@@ -84,7 +84,7 @@ function statusColor(status: SlotStatus) {
 export default function ClientTabs() {
   const { lang } = useLanguage();
   const [tab, setTab] = useState<"reservation" | "truck">("reservation");
-  const title = lang === "zh" ? "客户界面" : "Client Dashboard";
+  const title = lang === "zh" ? "客户工作台" : "Client Dashboard";
   const reservationTabLabel =
     lang === "zh" ? "海柜送仓预约" : "Container Delivery Reservation";
   const truckTabLabel =
@@ -374,7 +374,7 @@ function ReservationTab() {
                     {day.slots.map(slot => (
                       <div
                         key={slot.startTime}
-                        className={`text-xs rounded px-2 py-1 inline-flex items-center justify-between ${statusColor(
+                        className={`text-xs rounded px-2 py-1 inline-flex items-center justify-between flex-wrap ${statusColor(
                           slot.status
                         )}`}
                       >
@@ -649,50 +649,58 @@ function TruckTab() {
   const { lang } = useLanguage();
   return (
     <div className="space-y-4">
-      <div className="text-center text-xl font-semibold text-klein">
+      <div className="text-center text-3xl font-semibold text-klein">
         {lang === "zh"
           ? "卡车派送无需预约，直接送仓即可"
           : "Truck deliveries do not require reservation; send directly to warehouse."}
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         <div className="space-y-2">
-          <div className="text-sm font-medium text-slate-700">
+          <div className="text-lg font-medium text-slate-700">
             {lang === "zh" ? "公司地址" : "Company address"}
           </div>
-          <div className="text-sm text-slate-600">
+          <div className="text-lg text-slate-600">
             {lang === "zh"
-              ? "在这里填写公司详细地址。"
-              : "Fill in the detailed company address here."}
+              ? "11480 Hillguard Rd, Dallas, TX 75243"
+              : "11480 Hillguard Rd, Dallas, TX 75243"}
           </div>
         </div>
         <div className="space-y-2">
-          <div className="text-sm font-medium text-slate-700">
+          <div className="text-lg font-medium text-slate-700">
             {lang === "zh" ? "联系电话" : "Telephone"}
           </div>
-          <div className="text-sm text-slate-600">
-            {lang === "zh"
-              ? "在这里填写公司联系电话。"
-              : "Fill in the company telephone number here."}
+          <div className="text-lg text-slate-600">
+            {lang === "zh" ? "817-913-3376" : "817-913-3376"}
           </div>
         </div>
         <div className="space-y-2">
-          <div className="text-sm font-medium text-slate-700">
+          <div className="text-lg font-medium text-slate-700">
             {lang === "zh" ? "联系人信息" : "Contact person"}
           </div>
-          <div className="text-sm text-slate-600">
-            {lang === "zh"
-              ? "在这里填写联系人姓名和职务。"
-              : "Fill in the contact person's name and title here."}
+          <div className="text-lg text-slate-600">
+            {lang === "zh" ? (
+              <>
+                联系人:Bright Way
+                <br />
+                邮箱：supervisor.brightway.dallas@gmail.com
+              </>
+            ) : (
+              <>
+                Contact: Bright Way
+                <br />
+                Email: supervisor.brightway.dallas@gmail.com
+              </>
+            )}
           </div>
         </div>
         <div className="space-y-2">
-          <div className="text-sm font-medium text-slate-700">
+          <div className="text-lg font-medium text-slate-700">
             {lang === "zh" ? "可服务时间" : "Service hours"}
           </div>
-          <div className="text-sm text-slate-600">
+          <div className="text-lg text-slate-600">
             {lang === "zh"
-              ? "在这里说明卡车送仓的服务时间和注意事项。"
-              : "Describe truck delivery service hours and notes here."}
+              ? "周一和周日不可预约。其他日期可以送货时间：10:00-15:00。"
+              : "Truck deliveries are accepted from 10:00 to 15:00 on days other than Monday and Sunday."}
           </div>
         </div>
       </div>

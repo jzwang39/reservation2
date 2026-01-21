@@ -8,8 +8,8 @@ type Props = {
 };
 
 export const metadata = {
-  title: "仓库预约系统",
-  description: "仓库预约系统登录"
+  title: "大道会员仓送仓预约系统",
+  description: "大道会员仓送仓预约系统登录"
 };
 
 export default async function RootLayout({ children }: Props) {

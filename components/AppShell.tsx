@@ -51,7 +51,7 @@ export default function AppShell({ children, initialLang = "zh" }: Props) {
   }, [lang]);
 
   const title =
-    lang === "zh" ? "仓库预约系统" : "Warehouse Reservation System";
+    lang === "zh" ? "大道会员仓送仓预约系统" : "Right Way Warehouse Reservation System";
   const logoutLabel = lang === "zh" ? "退出登录" : "Sign out";
   const accountLabel = lang === "zh" ? "修改密码" : "Change password";
   const langLabel = lang === "zh" ? "EN" : "中";

@@ -63,7 +63,7 @@ export default function OperatorTabs() {
   const [tab, setTab] = useState<
     "reservations" | "closedSlots" | "clients"
   >("reservations");
-  const title = lang === "zh" ? "运营人员界面" : "Operator Dashboard";
+  const title = lang === "zh" ? "运营人员工作台" : "Operator Dashboard";
   const reservationsTabLabel =
     lang === "zh" ? "预约列表" : "Reservations";
   const closedSlotsTabLabel =
