@@ -95,25 +95,24 @@ function buildDayOverview(
           }
         }
       }
-      let exactMatchStatus: SlotStatus | null = null;
+      let exactMatchBooked = false;
       let hasOverlapBooked = false;
       for (const r of dayReservations) {
+        if (r.status !== "booked") {
+          continue;
+        }
         const exactMatch =
           r.start_time === startTime && r.end_time === endTime;
         const overlap =
           !(endTime <= r.start_time || startTime >= r.end_time);
         if (exactMatch) {
-          if (r.status === "booked") {
-            exactMatchStatus = "booked";
-          } else if (r.status === "cancelled") {
-            exactMatchStatus = "cancelled";
-          }
-        } else if (overlap && r.status === "booked") {
+          exactMatchBooked = true;
+        } else if (overlap) {
           hasOverlapBooked = true;
         }
       }
-      if (exactMatchStatus) {
-        status = exactMatchStatus;
+      if (exactMatchBooked) {
+        status = "booked";
       } else if (hasOverlapBooked && status === "available") {
         status = "unavailable";
       }

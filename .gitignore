@@ -25,7 +25,7 @@ coverage
 .turbo
 .vercel
 
-# Uploaded/temporary files
 uploads/
 db/reservation.db
-
+db/reservation.db-shm
+db/reservation.db-wal

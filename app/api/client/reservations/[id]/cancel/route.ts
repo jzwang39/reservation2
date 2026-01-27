@@ -15,9 +15,11 @@ export async function POST(
     return new NextResponse("Invalid id", { status: 400 });
   }
   const db = getDb();
-  const rowStmt = db.prepare("SELECT * FROM reservations WHERE id = ?");
-  const row = rowStmt.get(id) as ReservationRow | undefined;
-  if (!row || row.user_id !== session.user.id) {
+  const rowStmt = db.prepare(
+    "SELECT * FROM reservations WHERE id = ? AND user_id = ?"
+  );
+  const row = rowStmt.get(id, session.user.id) as ReservationRow | undefined;
+  if (!row) {
     return new NextResponse("Not found", { status: 404 });
   }
   const date = new Date(`${row.date}T00:00:00`);
@@ -39,4 +41,3 @@ export async function POST(
   cancelStmt.run(id, session.user.id, reason, row.date);
   return new NextResponse(null, { status: 204 });
 }
-

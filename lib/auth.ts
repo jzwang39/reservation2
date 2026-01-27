@@ -7,6 +7,7 @@ export const {
   auth,
   handlers: { GET, POST }
 } = (NextAuth as any)({
+  trustHost: true,
   providers: [
     Credentials({
       name: "credentials",
